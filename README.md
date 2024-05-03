@@ -83,3 +83,14 @@ An example HTTP response:
 }
 
 ```
+
+## Developer Notes
+
+* Promise to resolve to resolve an array of urls which will be passed to httpGet function.
+* Once the response is received, check the status code of the response.
+* If the status code is 200, push an object to the results array with a single key `"Arnie Quote"` and the HTTP response body's `message` property as the key's value.
+* If status code is not 200, push an object which is the key as `"FAILURE"` and the HTTP response body's `message`.
+* The return value is a promise that resolves to the results array.
+* The reason I used a promise.all is because the function needs to wait for all the promises to resolve before returning the results array.
+* If for instance we used a forEach function to loop through the urls and call the fetch function and not wait for each to resolve. It's safer this way.
+* If the urls are undefined or null or empty, the function will return an empty array.
